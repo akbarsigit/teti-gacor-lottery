@@ -99,6 +99,7 @@ export default function Home() {
     const tx = await buyTicket(stringArray);
 
     if (tx) {
+      alert("Transaction success");
       setTimeout(() => {
         window.location.reload();
       }, 4000);
@@ -194,7 +195,8 @@ export default function Home() {
       </div>
 
       <div className="mx-auto mt-5 p-3 border border-gray-200 rounded-lg shadow w-3/4">
-        <p className="text-3xl p-5">Input Number</p>
+        <p className="text-3xl">Buy Number</p>
+        <p className="pb-5">cost 10 TETIC</p>
         <form onSubmit={buyTickets} className="flex flex-col items-center">
           <div className="mb-6 flex flex-row space-x-4">
             <input
@@ -278,7 +280,7 @@ export default function Home() {
         </button>
       </div>
 
-      <p className="mt-7">Previous Draw Ticket</p>
+      <p className="mt-7">Previous Draw Lucky Number</p>
       {drawNum.map((draw, index) => (
         <div className="">
           <div className="mx-auto mt-5 p-3 border border-gray-200 rounded-lg shadow w-3/4">
@@ -309,7 +311,7 @@ export default function Home() {
             </div>
             <button
               value={draw.lottoid}
-              onClick={() => claim(e.target.value)}
+              onClick={(e) => claim(e.target.value)}
               className="mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               claim
