@@ -80,34 +80,6 @@ export default function Home() {
     });
   };
 
-  // clikc digit => save to use state
-  // const addDigits = (e) => {
-  //   if (digitCount < 6) {
-  //     getTckNumb([...tckNum, e]);
-  //     let parent = document.getElementById("numoutput");
-  //     let div1 = document.createElement("div");
-  //     div1.className = "digit";
-  //     let html = `
-  //       <span>${e.trim()}</span>
-  //   `;
-  //     div1.innerHTML = html;
-  //     parent.appendChild(div1);
-  //     digitCount++;
-  //   } else {
-  //     return;
-  //   }
-  // };
-
-  // const removeDigits = () => {
-  //   if (digitCount > 0) {
-  //     tckNum.pop();
-  //     getTckNumb(tckNum);
-  //     let parent = document.getElementById("numoutput");
-  //     parent.removeChild(parent.lastElementChild);
-  //     digitCount--;
-  //   }
-  // };
-
   const buyTickets = async () => {
     event.preventDefault();
     let numberArray = [];
@@ -133,30 +105,6 @@ export default function Home() {
     }
   };
 
-  // const buyTickets = async () => {
-  // if (digitCount == 4) {
-  //   let numberArray = [];
-  //   let stringArray = [];
-  //   for (let i = 0; i < tckNum.length; i++) {
-  //     numberArray.push(parseInt(tckNum[i]));
-  //   }
-  //   const numbers = await sortArray(numberArray);
-  //   for (let i = 0; i < numbers.length; i++) {
-  //     stringArray.push(numbers[i].toString());
-  //   }
-  //   const tx = await buyTicket(stringArray);
-  //   if (tx) {
-  //     document.getElementById("complete").innerHTML =
-  //       "Tx Successful, Refreshing...";
-  //     setTimeout(() => {
-  //       window.location.reload();
-  //     }, 4000);
-  //   }
-  // } else {
-  //   console.log("transaction canceled");
-  // }
-  // };
-
   const getAllWinningNumbers = async () => {
     const currentId = await getCurrentLottoId();
     const lastDrawId = (currentId.data - 1).toString();
@@ -168,7 +116,7 @@ export default function Home() {
       dataArray.push(data);
     }
     const reverseArray = dataArray.reverse();
-
+    console.log(reverseArray);
     viewDrawNum(reverseArray);
   };
 
@@ -247,54 +195,48 @@ export default function Home() {
 
       <div className="mx-auto mt-5 p-3 border border-gray-200 rounded-lg shadow w-3/4">
         <p className="text-3xl p-5">Input Number</p>
-        <form onSubmit={buyTickets}>
-          <div class="mb-6">
+        <form onSubmit={buyTickets} className="flex flex-col items-center">
+          <div className="mb-6 flex flex-row space-x-4">
             <input
               type="text"
               name="satu"
               value={tckNum.satu}
               onChange={handleChange}
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded focus:ring-blue-500 focus:border-blue-500 block w-16 p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="1"
               required
             />
-          </div>
-          <div class="mb-6">
             <input
               type="text"
               name="dua"
               value={tckNum.dua}
               onChange={handleChange}
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded focus:ring-blue-500 focus:border-blue-500 block w-16 p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="1"
               required
             />
-          </div>
-          <div class="mb-6">
             <input
               type="text"
               name="tiga"
               value={tckNum.tiga}
               onChange={handleChange}
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded focus:ring-blue-500 focus:border-blue-500 block w-16 p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="1"
               required
             />
-          </div>
-          <div class="mb-6">
             <input
               type="text"
               name="empat"
               value={tckNum.empat}
               onChange={handleChange}
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded focus:ring-blue-500 focus:border-blue-500 block w-16 p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="1"
               required
             />
           </div>
           <button
             type="submit"
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="mt-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Submit
           </button>
@@ -336,8 +278,8 @@ export default function Home() {
         </button>
       </div>
 
-      <p className="mt-5 m-10">Previous Draw Ticket</p>
-      {drawNum.map((draw, i) => {
+      <p className="mt-7">Previous Draw Ticket</p>
+      {drawNum.map((draw, index) => (
         <div className="">
           <div className="mx-auto mt-5 p-3 border border-gray-200 rounded-lg shadow w-3/4">
             <p className="mb-3">Draw # {draw.lottoid}</p>
@@ -373,8 +315,8 @@ export default function Home() {
               claim
             </button>
           </div>
-        </div>;
-      })}
+        </div>
+      ))}
     </div>
   );
 }
